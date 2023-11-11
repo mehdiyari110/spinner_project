@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spinner_project/facilities/HomePage.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: MyApp(),
   ));
 }
@@ -13,6 +13,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return HomePage();
+    return const HomePage();
   }
 }
