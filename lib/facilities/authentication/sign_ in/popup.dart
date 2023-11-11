@@ -1,5 +1,8 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:spinner_project/facilities/authentication/confirm/confirm.dart';
 
 class PopUpSignIn extends StatefulWidget {
   const PopUpSignIn({super.key});
@@ -9,6 +12,8 @@ class PopUpSignIn extends StatefulWidget {
 }
 
 class _PopUpSignInState extends State<PopUpSignIn> {
+  TextEditingController textEditingController = TextEditingController();
+  int? phone;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -18,7 +23,8 @@ class _PopUpSignInState extends State<PopUpSignIn> {
             height: MediaQuery.of(context).size.height * 2 / 5,
             decoration: const BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(20)),//این کار نمیکنه
+              borderRadius:
+                  BorderRadius.all(Radius.circular(20)), //این کار نمیکنه
             ),
             child: Expanded(
               child: Column(
@@ -88,11 +94,14 @@ class _PopUpSignInState extends State<PopUpSignIn> {
                             if (!value!.startsWith('9')) {
                               return 'شماره تلفن صحیح نیست';
                             }
-                            if (value.length < 9 && value.length > 1) {
+                            if (value.length < 10 && value.length > 1) {
                               return 'شماره تلفن 10 رقمی است';
                             }
+                            // phone = int.parse(value);
+
                             return null;
                           },
+                          controller: textEditingController,
                         ),
                       )
                     ],
@@ -102,13 +111,22 @@ class _PopUpSignInState extends State<PopUpSignIn> {
                       width: 200,
                       height: 40,
                       child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            phone = int.parse(textEditingController.text);
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Confirm(
+                                    phone: phone!,
+                                  );
+                                });
+                          },
                           child: const Text(
                             'تایید',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ))),
-                  // SizedBox(height: 10),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import 'authentication/sign_ in/popup.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,22 +12,21 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late PopUpSignIn popUpSignIn;
 
-  showPopUp(Widget dialog) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return dialog;
-        });
-  }
+ 
+  
 
   @override
-  /*void initState() {
+  void initState() {
     popUpSignIn = PopUpSignIn();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      showPopUp(popUpSignIn);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return popUpSignIn;
+        });
     });
     super.initState();
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 child: Container(
-                    Spinner(
+                    /* Spinner(
   title: "Tentez votre chance !",
   titleColor: Color(0xFFD80497),
   description: "Faites tourner la roue pour tenter d'obtenir d'innombrables cadeaux",
@@ -51,7 +49,7 @@ class _HomePageState extends State<HomePage> {
   gifts: ["Gift 1", "Gift 2", "Gift 3", ...],
   imagePath: "assets/images/roulette.png",
   iconPath: "assets/images/roulette-icon.png",
-)
+)*/
                     ),
               ),
               ClipRRect(
